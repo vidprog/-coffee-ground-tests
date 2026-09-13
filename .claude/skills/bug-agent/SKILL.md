@@ -30,11 +30,30 @@ npm install && npx playwright install --with-deps chromium
 що саме ти зробив (список команд і дій), що побачив натомість, скріншот поточної поведінки,
 і 2–3 уточнювальні питання авторові. Не закривай тікет.
 
-**Відтворилося?** Постав `bug:reproduced`, зроби скріншот «до»:
+**Відтворилося?** Постав `bug:reproduced`, зроби скріншот «до» і **одразу опублікуй його в тікеті**:
 
 ```bash
-node scripts/evidence.mjs before-$ISSUE --test <id>
+node scripts/evidence.mjs before-$ISSUE --test <id>          # додай --focus, якщо баг невидимий
+git checkout -b ai/$ISSUE-<опис> origin/main                 # гілка потрібна вже тут
+git add docs/evidence/before-$ISSUE-*.png && git commit -m "docs: доказ відтворення #$ISSUE"
+git push -u origin ai/$ISSUE-<опис>
 ```
+
+Коментар у тікет — **до того, як почнеш лагодити**:
+
+```markdown
+## 🔁 Баг відтворено
+
+**Як відтворював:** що саме зробив, по кроках.
+**Що побачив:** фактична поведінка.
+
+![до](https://raw.githubusercontent.com/vidprog/-coffee-ground-tests/ai/$ISSUE-<опис>/docs/evidence/before-$ISSUE-result.png)
+
+**Далі:** фіксую тестом і виправляю / передаю людині (якщо впевненість низька).
+```
+
+Це доказ, що баг існує. Він має зʼявитися в тікеті **раніше** за будь-який фікс —
+щоб автор бачив підтвердження, навіть якщо далі робота впреться в `needs-human`.
 
 ## Крок 2. Зафіксуй тестом
 
@@ -65,8 +84,7 @@ node scripts/evidence.mjs before-$ISSUE --test <id>
 
 ```bash
 npm test                                   # уся сюїта зелена, не тільки новий тест
-node scripts/evidence.mjs before-$ISSUE --test <id>   # на коді ДО фікса
-node scripts/evidence.mjs after-$ISSUE --test <id>    # на коді ПІСЛЯ
+node scripts/evidence.mjs after-$ISSUE --test <id>    # «до» вже зроблено на кроці 1
 ```
 
 Якщо баг невидимий на звичайному скріншоті (фокус, aria, стан у памʼяті) — додай `--focus`
@@ -114,7 +132,8 @@ Fixes #$ISSUE
 
 ## Крок 7. Закрий цикл
 
-Коментар у **тікеті** — обовʼязково зі скріншотом «після», а не лише з посиланням:
+Другий коментар у **тікеті** — зі скріншотом «після». Разом із коментарем «до» з кроку 1
+вони утворюють пару, яку автор бага бачить не відкриваючи PR:
 
 ```markdown
 ## ✅ Виправлено, чекає рев'ю
