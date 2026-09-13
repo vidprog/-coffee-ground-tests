@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тести на кавовій гущі</title>
+<meta name="description" content="Жартівливі езотеричні тести: дізнайся, яка ти квітка, який ти герой мультфільму та інші відкриття на кавовій гущі.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Marcellus+SC&family=Manrope:wght@300;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔮</text></svg>">
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="fog" aria-hidden="true"></div>
+
+<header class="site-head">
+  <div class="sigil" aria-hidden="true">
+    <svg viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="52" />
+      <circle cx="60" cy="60" r="38" />
+      <polygon points="60,14 100,84 20,84" />
+      <polygon points="60,106 20,36 100,36" />
+      <circle cx="60" cy="60" r="9" class="pupil"/>
+    </svg>
+  </div>
+  <h1>Тести на кавовій гущі</h1>
+  <p class="tagline">Наукової цінності — нуль. Пророчої — теж. Але гуща ніколи не бреше.</p>
+</header>
+
+<main>
+  <!-- ЕКРАН 1: вибір тесту -->
+  <section id="screen-home" class="screen is-active">
+    <h2 class="section-title">Обери своє віщування</h2>
+    <div id="test-grid" class="test-grid"></div>
+    <p class="disclaimer">✦ Усі результати згенеровані гущею з ранкової кави. Приймати не більше 3 тестів на добу. ✦</p>
+  </section>
+
+  <!-- ЕКРАН 2: питання -->
+  <section id="screen-quiz" class="screen" aria-live="polite">
+    <button class="ghost-btn back-btn" data-action="home">← до інших віщувань</button>
+    <div class="quiz-head">
+      <p class="quiz-name" id="quiz-name"></p>
+      <div class="moons" id="moons"></div>
+    </div>
+    <div class="card question-card" id="question-card">
+      <p class="q-index" id="q-index"></p>
+      <h2 class="q-text" id="q-text"></h2>
+      <div class="options" id="options"></div>
+    </div>
+  </section>
+
+  <!-- ЕКРАН 3: результат -->
+  <section id="screen-result" class="screen">
+    <div class="card result-card">
+      <div class="orb" aria-hidden="true"><span id="result-emoji">✦</span></div>
+      <p class="result-kicker">Гуща промовила</p>
+      <h2 class="result-title" id="result-title"></h2>
+      <p class="result-text" id="result-text"></p>
+      <div class="scroll-note">
+        <span class="scroll-label">Порада від Всесвіту</span>
+        <p id="result-advice"></p>
+      </div>
+      <div class="traits" id="result-traits"></div>
+      <div class="result-actions">
+        <button class="rune-btn" data-action="retry">Перепитати гущу</button>
+        <button class="ghost-btn" data-action="copy">Скопіювати результат</button>
+        <button class="ghost-btn" data-action="home">Інші тести</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Зварено на темній обжарці · <span id="year"></span></p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
