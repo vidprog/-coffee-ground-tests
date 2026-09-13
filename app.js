@@ -13,7 +13,12 @@
   /* ── Навігація ─────────────────────────── */
   function show(name) {
     Object.values(screens).forEach((s) => s.classList.remove("is-active"));
-    screens[name].classList.add("is-active");
+    const target = screens[name];
+    target.classList.add("is-active");
+    /* без цього фокус лишається на прихованому елементі попереднього екрана
+       (браузер скидає його на <body>, бо старий фокусований елемент зникає) */
+    target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
