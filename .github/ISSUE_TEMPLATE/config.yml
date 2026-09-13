@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📖 Як працює пайплайн
+    url: https://github.com/vidprog/-coffee-ground-tests/blob/main/PIPELINE.md
+    about: Стан-машина тікета, команди в коментарях і межі повноважень агента

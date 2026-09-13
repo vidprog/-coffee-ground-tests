@@ -1,0 +1,54 @@
+# Робота з GitHub із хмарної сесії
+
+Довідка для всіх агентів пайплайну. Репозиторій: `vidprog/-coffee-ground-tests`.
+
+## Перевірка доступу
+
+Перше, що робить агент:
+
+```bash
+gh auth status && gh repo view vidprog/-coffee-ground-tests --json name
+```
+
+Немає доступу — зупинись і скажи про це прямо. Не вдавай, що працюєш.
+
+## Часті команди
+
+```bash
+# тікети
+gh issue view $ISSUE --comments
+gh issue list --label "type:bug" --label "ai:triaged" --state open --json number,title
+gh issue comment $ISSUE --body-file коментар.md
+gh issue edit $ISSUE --add-label "x" --remove-label "y"
+
+# PR
+gh pr create --draft --title "..." --body-file тіло.md
+gh pr ready $PR
+gh pr checks $PR
+gh pr comment $PR --body-file рев'ю.md
+```
+
+Довгі коментарі завжди через `--body-file`, а не `--body`: лапки й переноси
+в українському тексті ламають шелл.
+
+## Захист від циклів
+
+Агент коментує → коментар тригерить агента → нескінченний цикл і рахунок.
+
+Перед роботою перевір автора останнього коментаря. Якщо це бот або ти сам —
+зупинись, окрім випадку, коли в коментарі людини є явна команда (`/fix`, `/approve`).
+
+## Ідемпотентність
+
+Запуск може повторитися. Перед публікацією коментаря перевір, чи такого ще немає:
+
+```bash
+gh issue view $ISSUE --comments --json comments -q '.comments[].body' | grep -c "## 🔍 Тріаж"
+```
+
+Уже є — онови наявний коментар замість дубля, або просто вийди.
+
+## Завжди прибирай за собою
+
+Лейбл `ai:in-progress` знімається **за будь-якого** результату: успіх, помилка, здача.
+Залишений `ai:in-progress` блокує тікет назавжди.

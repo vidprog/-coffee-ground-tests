@@ -24,7 +24,9 @@ body{
     radial-gradient(900px 600px at 110% 20%,#1b2a5c 0%,transparent 55%),
     radial-gradient(800px 600px at -10% 80%,#3a1240 0%,transparent 55%),
     linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 60%,var(--bg) 100%);
-  background-attachment:fixed;
+  background-repeat:no-repeat;
+  /* після шортката, інакше він скидає колір у transparent і низ сторінки білий */
+  background-color:var(--bg);
   overflow-x:hidden;
 }
 #stars{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.85}

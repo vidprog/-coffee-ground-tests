@@ -1,0 +1,15 @@
+{
+  "name": "coffee-ground-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Тести на кавовій гущі — жартівливі езотеричні тести",
+  "scripts": {
+    "serve": "python3 -m http.server 8000",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "evidence": "node scripts/evidence.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.0"
+  }
+}

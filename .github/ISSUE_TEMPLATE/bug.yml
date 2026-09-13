@@ -1,0 +1,51 @@
+name: 🐞 Баг
+description: Щось працює не так, як має
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Заповни всі поля — агент тріажу перевіряє саме їх.
+        Якщо поле порожнє, тікет отримає лейбл `needs-info` і робота зупиниться.
+  - type: textarea
+    id: steps
+    attributes:
+      label: Кроки відтворення
+      description: По пунктах, від відкриття сторінки. Агент виконає їх буквально в браузері.
+      placeholder: |
+        1. Відкрити index.html
+        2. Натиснути «Яка ти квітка»
+        3. Відповісти на 5 питань
+      value: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Очікуваний результат
+      placeholder: Показується екран результату з архетипом.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Фактичний результат
+      placeholder: Сторінка порожня, у консолі помилка.
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Браузер і пристрій
+      placeholder: Chrome 140, macOS / Safari на iPhone 14
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Скріншоти, помилки з консолі, додатковий контекст
+    validations:
+      required: false

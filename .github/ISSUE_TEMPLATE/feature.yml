@@ -1,0 +1,41 @@
+name: ✨ Нова функціональність
+description: Ідея або запит на зміну поведінки
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Агент напише специфікацію на основі цих полів.
+        Чим конкретніші критерії приймання — тим менше він вигадає.
+  - type: textarea
+    id: who
+    attributes:
+      label: Хто і навіщо
+      description: Для кого ця зміна і яку проблему вона знімає.
+      placeholder: Користувач на телефоні не може поділитися результатом у месенджері — доводиться робити скріншот.
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: Що саме має зʼявитися
+      placeholder: Кнопка «Поділитися» на екрані результату, яка викликає системний Web Share API.
+    validations:
+      required: true
+  - type: textarea
+    id: criteria
+    attributes:
+      label: Критерії приймання
+      description: Список умов, які можна перевірити тестом. Це основа для доказів після імплементації.
+      value: |
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Чого робити НЕ треба
+      description: Явні межі. Без них імплементація розповзається.
+    validations:
+      required: false
