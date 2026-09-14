@@ -87,7 +87,7 @@
 ## Формат доказів
 
 Скріншоти комітяться в гілку PR у `docs/evidence/` і вставляються в коментар
-за посиланням `https://raw.githubusercontent.com/vidprog/-coffee-ground-tests/<гілка>/docs/evidence/<файл>.png`.
+за посиланням `https://raw.githubusercontent.com/vidprog/coffee-ground-tests/<гілка>/docs/evidence/<файл>.png`.
 
 Артефакти GitHub Actions для цього не годяться — їх не видно в коментарі.
 
